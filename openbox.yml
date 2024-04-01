@@ -1,0 +1,35 @@
+openapi: '3.0.2'
+info:
+  title: Openbox Backend Internal API
+  version: '1.0'
+servers:
+  - url: https://localhost:8080/api
+paths:
+  /process/application/leave-application:
+    put:
+      description: User initiate a new leave application with required information.
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: The username of the user who initiate the application
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./models/LeaveApplication.yml#/components/schemas/PutLeaveApplication"
+              
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: './models/Application.yml#/components/schemas/Application' 
+                  - $ref: './models/LeaveApplication.yml#/components/schemas/LeaveApplication' 
+                
+

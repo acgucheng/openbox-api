@@ -1,0 +1,16 @@
+components:
+  schemas:
+    Application:
+      type: object
+      properties:
+        id:
+          type: integer
+          readonly: true
+          description: The unique id of each leave application
+        applicant:
+          type: string
+          description: The username of the applicant
+          example: tony
+        submitTime:
+          type: string
+          description: The time of the first submission of the application

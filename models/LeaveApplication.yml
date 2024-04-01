@@ -1,0 +1,51 @@
+components:
+  schemas:
+    LeaveApplication:
+      type: object
+      properties:
+        leaveType:
+          type: string
+          description: The type of the leave application, including "SICK" and "PERSONAL"
+          enum:
+            - SICK
+            - PERSONAL
+        startDate: 
+          type: string
+          description: The start date of the leave.
+          example: 2024-03-31
+        endDate:
+          type: string
+          description: An ISO standard time string of the leave end time
+          example: 2024-03-31
+        currentHandler:
+          type: string
+          description: The username of the current handler of the Leave application. Current handler is the initiator when the application is initiating or end.
+          example: raynold
+        status:
+          type: string
+          description: The status of current application. Including "RETURNED", "ACTIVE", "ABOLISHED", "REJECTED"
+          enum:
+            - ACTIVE
+            - RETURNED
+            - ABOLISHED
+            - REJECTED
+    PutLeaveApplication:
+      properties:
+        applicant:
+          $ref: "./Application.yml#/components/schemas/Application/properties/applicant"
+        leaveType: 
+          $ref: "#/components/schemas/LeaveApplication/properties/leaveType"
+        startDate: 
+          $ref: "#/components/schemas/LeaveApplication/properties/startDate"
+        endDate:
+          $ref: "#/components/schemas/LeaveApplication/properties/endDate"
+        Timezone:
+          type: string
+          description: The time zone of current user.
+          example: 'America/Vancouver'
+      required:
+        - applicant
+        - leaveType
+        - startDate
+        - endDate
+        - Timezone
