@@ -8,13 +8,6 @@ paths:
   /process/application/leave-application:
     put:
       description: User initiate a new leave application with required information.
-      parameters:
-        - name: username
-          in: path
-          required: true
-          description: The username of the user who initiate the application
-          schema:
-            type: string
       requestBody:
         required: true
         content:
@@ -32,4 +25,16 @@ paths:
                   - $ref: './models/Application.yml#/components/schemas/Application' 
                   - $ref: './models/LeaveApplication.yml#/components/schemas/LeaveApplication' 
                 
-
+  /process/application/{applicationID}/permit:
+    post:
+      description: 'Permit an application by manager. The api can only be triggered by the applicant''s manager'
+      parameters:
+        - in: path
+          name: applicationId
+          schema:
+            type: integer
+          required: true
+          description: The id of the application.
+      responses:
+        '200':
+          description: OK

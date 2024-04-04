@@ -12,11 +12,11 @@ components:
         startDate: 
           type: string
           description: The start date of the leave.
-          example: 2024-03-31
+          example: "2024-03-31"
         endDate:
           type: string
           description: An ISO standard time string of the leave end time
-          example: 2024-03-31
+          example: "2024-03-31"
         currentHandler:
           type: string
           description: The username of the current handler of the Leave application. Current handler is the initiator when the application is initiating or end.

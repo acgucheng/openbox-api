@@ -14,3 +14,4 @@ components:
         submitTime:
           type: string
           description: The time of the first submission of the application
+          example: "2024-04-03T21:05:41-0700"
