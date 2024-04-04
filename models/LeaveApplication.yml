@@ -27,6 +27,8 @@ components:
           $ref: "./Application.yml#/components/schemas/Application/properties/applicant"
         leaveType: 
           $ref: "#/components/schemas/LeaveApplication/properties/leaveType"
+        reason:
+          $ref: "./Application.yml#/components/schemas/Application/properties/reason"
         startDate: 
           $ref: "#/components/schemas/LeaveApplication/properties/startDate"
         endDate:

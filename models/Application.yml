@@ -15,6 +15,10 @@ components:
           type: string
           description: The time of the first submission of the application
           example: "2024-04-03T21:05:41-0700"
+        reason:
+          type: string
+          description: The reason for leave
+          example: "I will marry with my girlfriend that day"
         status:
           type: string
           description: The status of current application. Including "RETURNED", "ACTIVE", "ABOLISHED", "REJECTED", "APPROVED"
