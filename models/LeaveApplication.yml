@@ -11,24 +11,16 @@ components:
             - PERSONAL
         startDate: 
           type: string
-          description: The start date of the leave.
-          example: "2024-03-31"
+          description: The start date time of the leave. The date time follow the ISO 8601 format.
+          example: "2024-03-31T08:30:00-07:00"
         endDate:
           type: string
           description: An ISO standard time string of the leave end time
-          example: "2024-03-31"
+          example: "2024-03-31T18:00:00-07:00"
         currentHandler:
           type: string
           description: The username of the current handler of the Leave application. Current handler is the initiator when the application is initiating or end.
           example: raynold
-        status:
-          type: string
-          description: The status of current application. Including "RETURNED", "ACTIVE", "ABOLISHED", "REJECTED"
-          enum:
-            - ACTIVE
-            - RETURNED
-            - ABOLISHED
-            - REJECTED
     PutLeaveApplication:
       properties:
         applicant:
@@ -39,10 +31,6 @@ components:
           $ref: "#/components/schemas/LeaveApplication/properties/startDate"
         endDate:
           $ref: "#/components/schemas/LeaveApplication/properties/endDate"
-        Timezone:
-          type: string
-          description: The time zone of current user.
-          example: 'America/Vancouver'
       required:
         - applicant
         - leaveType

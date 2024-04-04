@@ -15,3 +15,12 @@ components:
           type: string
           description: The time of the first submission of the application
           example: "2024-04-03T21:05:41-0700"
+        status:
+          type: string
+          description: The status of current application. Including "RETURNED", "ACTIVE", "ABOLISHED", "REJECTED", "APPROVED"
+          enum:
+            - ACTIVE
+            - RETURNED
+            - ABOLISHED
+            - REJECTED
+            - APPROVED

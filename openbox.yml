@@ -25,7 +25,7 @@ paths:
                   - $ref: './models/Application.yml#/components/schemas/Application' 
                   - $ref: './models/LeaveApplication.yml#/components/schemas/LeaveApplication' 
                 
-  /process/application/{applicationID}/permit:
+  /process/application/{applicationId}/permit:
     post:
       description: 'Permit an application by manager. The api can only be triggered by the applicant''s manager'
       parameters:
@@ -35,6 +35,26 @@ paths:
             type: integer
           required: true
           description: The id of the application.
+      responses:
+        '200':
+          description: OK
+  
+  /process/application/{applicationId}/reject:
+    post:
+      description: 'Reject an application by manager. The api can only be triggered by the applicant''s manager'
+      parameters:
+        - in: path
+          name: applicationId
+          schema:
+            type: integer
+          required: true
+          description: "The ID of the application."
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+            example: "The leave time is obscured. Please indicate a precise time"
       responses:
         '200':
           description: OK
