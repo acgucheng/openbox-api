@@ -59,7 +59,7 @@ paths:
         '200':
           description: OK
 
-  /process/application/{applicationId}?handler={handler}&applicant={applicant}:
+  /process/application?handler={handler}&applicant={applicant}:
     get:
       description: Get applications by condition(s), return an application list including all of the applications satisfied the condition(s).
       parameters:
