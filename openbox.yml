@@ -58,3 +58,38 @@ paths:
       responses:
         '200':
           description: OK
+
+  /process/application/{applicationId}?handler={handler}&applicant={applicant}:
+    get:
+      description: Get applications by condition(s), return an application list including all of the applications satisfied the condition(s).
+      parameters:
+        - in: query
+          name: handler
+          schema:
+            type: string
+          description: Get the applications by current handler
+          example: "raynold"
+          required: false
+        - in: query
+          name: applicant
+          schema:
+            type: string 
+          required: false
+          example: "tony"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  allOf:
+                  - $ref: './models/Application.yml#/components/schemas/Application' 
+                  - $ref: './models/LeaveApplication.yml#/components/schemas/LeaveApplication' 
+
+                    
+
+    
+    
