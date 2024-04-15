@@ -120,11 +120,11 @@ paths:
               schema:
                 $ref: './models/Announcement.yml#/components/schemas/Announcement'
 
-  /announcement?before={expiryDate}:
+  /announcement?expireAfter={date}:
     get:
       tags:
         - announcement
-      description: Get all announcements before the expiry date.
+      description: Get all announcements the expiry date of which is after the given date.
       parameters:
         - in: query
           name: expiryDate
