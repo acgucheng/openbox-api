@@ -1,0 +1,59 @@
+components:
+  schemas:
+    Announcement:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: integer
+          description: The unique identifier of the announcement
+          example: 1
+        title:
+          type: string
+          description: The title of the announcement
+          example: "The new policy of the company"
+        content:
+          type: string
+          description: The content of the announcement
+          example: "The new policy of the company is that all employees must wear a mask when they are in the office."
+        publisher:
+          type: string
+          description: The username of the publisher of the announcement
+          example: raynold
+        createdTime:
+          type: string
+          format: date-time
+          description: The creation date and time of the announcement
+          example: "2024-03-31T08:30:00-07:00"
+        expiryDate:
+          type: string
+          format: date-time
+          description: The expiry date of the announcement
+          example: "2024-04-30T08:30:00-07:00"
+    postAnnouncement:
+      properties:
+        title:
+          $ref: "#/components/schemas/Announcement/properties/title"
+        content:
+          $ref: "#/components/schemas/Announcement/properties/content"
+        publisher:
+          $ref: "#/components/schemas/Announcement/properties/publisher"
+        expiryDate:
+          $ref: "#/components/schemas/Announcement/properties/expiryDate"
+      required:
+        - title
+        - content
+        - publisher
+        - expiryDate
+    putAnnouncement:
+      properties:
+        title:
+          $ref: "#/components/schemas/Announcement/properties/title"
+        content:
+          $ref: "#/components/schemas/Announcement/properties/content"
+        expiryDate:
+          $ref: "#/components/schemas/Announcement/properties/expiryDate"
+      required:
+        - title
+        - content
+        - expiryDate

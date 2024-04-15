@@ -4,9 +4,16 @@ info:
   version: '1.0'
 servers:
   - url: https://localhost:8080/api
+    description: The local server
+tags:
+  - name: application
+  - name: announcement
+  
 paths:
   /process/application/leave-application:
     put:
+      tags:
+        - application
       description: User initiate a new leave application with required information.
       requestBody:
         required: true
@@ -27,6 +34,8 @@ paths:
                 
   /process/application/{applicationId}/permit:
     post:
+      tags:
+        - application
       description: 'Permit an application by manager. The api can only be triggered by the applicant''s manager'
       parameters:
         - in: path
@@ -41,6 +50,8 @@ paths:
   
   /process/application/{applicationId}/reject:
     post:
+      tags:
+        - application
       description: 'Reject an application by manager. The api can only be triggered by the applicant''s manager'
       parameters:
         - in: path
@@ -61,6 +72,8 @@ paths:
 
   /process/application?handler={handler}&applicant={applicant}:
     get:
+      tags:
+        - application
       description: Get applications by condition(s), return an application list including all of the applications satisfied the condition(s).
       parameters:
         - in: query
@@ -88,8 +101,100 @@ paths:
                   allOf:
                   - $ref: './models/Application.yml#/components/schemas/Application' 
                   - $ref: './models/LeaveApplication.yml#/components/schemas/LeaveApplication' 
+  /announcement:
+    post:
+      tags:
+        - announcement
+      description: Create a new announcement.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './models/Announcement.yml#/components/schemas/postAnnouncement'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './models/Announcement.yml#/components/schemas/Announcement'
 
-                    
+  /announcement?before={expiryDate}:
+    get:
+      tags:
+        - announcement
+      description: Get all announcements before the expiry date.
+      parameters:
+        - in: query
+          name: expiryDate
+          schema:
+            type: string
+          required: false
+          description: The expiry date of the announcement
+          example: "2024-03-31T08:30:00-07:00"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  allOf:
+                    - $ref: './models/Announcement.yml#/components/schemas/Announcement'
 
-    
-    
+  /announcement/{announcementId}:
+    get:
+      tags:
+        - announcement
+      description: Get the announcement by the announcement id.
+      parameters:
+        - in: path
+          name: announcementId
+          schema:
+            type: integer
+          required: true
+          description: The id of the announcement.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './models/Announcement.yml#/components/schemas/Announcement'
+    delete:
+      tags:
+        - announcement
+      description: Delete the announcement by the announcement id.
+      parameters:
+        - in: path
+          name: announcementId
+          schema:
+            type: integer
+          required: true
+          description: The id of the announcement.
+      responses:
+        '200':
+          description: OK
+    put:
+      tags:
+        - announcement
+      description: Update the announcement by the announcement id.
+      parameters:
+        - in: path
+          name: announcementid
+          schema:
+            type: integer
+          required: true
+          description: The id of the announcement.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './models/Announcement.yml#/components/schemas/putAnnouncement'
+      responses:
+        '200':
+          description: OK
