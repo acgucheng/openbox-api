@@ -57,3 +57,18 @@ components:
         - title
         - content
         - expiryDate
+    announcementReadLog:
+      properties:
+        announcementId:
+          type: integer
+          description: The id of the announcement
+          example: 1
+        reader:
+          type: string
+          description: The username of the reader
+          example: tony
+        readTime:
+          type: string
+          format: date-time
+          description: The time when the announcement is read by the reader
+          example: "2024-03-31T08:30:00-07:00"

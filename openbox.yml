@@ -198,3 +198,52 @@ paths:
       responses:
         '200':
           description: OK
+  
+  /announcement/{announcementId}/read:
+    post:
+      tags:
+        - announcement
+      description: |
+        Mark the announcement as read by the current user. <br> <br>
+        __Notice:__ Only the first time the reader read the announcement should call this function. If the function is called multiple times with the same user and annoncement, there will be no change!
+      parameters:
+        - in: path
+          name: announcementId
+          schema:
+            type: integer
+          required: true
+          description: The id of the announcement.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                reader:
+                  $ref: './models/Announcement.yml#/components/schemas/announcementReadLog/properties/reader'
+      responses:
+        '200':
+          description: OK
+  
+  /announcement/readLog?reader={reader}:
+    get:
+      tags:
+        - announcement
+      description: Get all announcement read log of the reader.
+      parameters:
+        - in: query
+          name: reader
+          schema:
+            type: string
+          required: true
+          description: The username of the reader.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  $ref: './models/Announcement.yml#/components/schemas/announcementReadLog'
