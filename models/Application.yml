@@ -28,3 +28,7 @@ components:
             - ABOLISHED
             - REJECTED
             - APPROVED
+        note:
+          type: string
+          description: The note for history applications
+          example: "This is a sick note"

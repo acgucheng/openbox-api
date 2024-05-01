@@ -101,6 +101,30 @@ paths:
                   allOf:
                   - $ref: './models/Application.yml#/components/schemas/Application' 
                   - $ref: './models/LeaveApplication.yml#/components/schemas/LeaveApplication' 
+
+  /process/application/{applicationId}/note:
+    put:
+      tags:
+        - application
+      description: Put note by manager
+      parameters:
+        - in: path
+          name: applicationId
+          schema:
+            type: integer
+          required: true
+          description: The id of the application.
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+            example: "This is a sick note"
+      responses:
+        '200':
+          description: OK 
+
   /announcement:
     post:
       tags:
