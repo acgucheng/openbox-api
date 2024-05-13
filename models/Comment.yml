@@ -1,0 +1,9 @@
+components:
+  schemas:
+    Comment:
+      type: object
+      properties:
+        topic:
+          type: integer
+          description: The id of the topic that the comment belongs to
+          example: 5

@@ -271,3 +271,105 @@ paths:
                 items:
                   type: object
                   $ref: './models/Announcement.yml#/components/schemas/announcementReadLog'
+  
+  /forum/post:
+    post:
+      tags:
+        - post
+      description: Create a new post.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './models/Post.yml#/components/schemas/PostPost'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './models/Post.yml#/components/schemas/Post'
+  /forum/post/{postId}: 
+    get:
+      tags:
+        - post
+      description: Get the post by the post id.
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: integer
+          required: true
+          description: The id of the post.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './models/Post.yml#/components/schemas/Post'
+    delete:
+      tags:
+        - post
+      description: Delete the post by the post id.
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: integer
+          required: true
+          description: The id of the post.
+      responses:
+        '200':
+          description: OK
+    put:
+      tags:
+        - post
+      description: Update the post by the topic id.
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: integer
+          required: true
+          description: The id of the topic.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './models/Post.yml#/components/schemas/PostPost'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './models/Post.yml#/components/schemas/UpdatePost'
+  /forum/post/{topicId}/comment:
+    post:
+      tags:
+        - post
+      description: Create a new comment.
+      parameters:
+        - in: path
+          name: topicId
+          schema:
+            type: integer
+          required: true
+          description: The id of the topic post.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              allOf:
+                - $ref: './models/Post.yml#/components/schemas/PostPost'
+                - $ref: './models/Comment.yml#/components/schemas/Comment'
+      responses:
+        '200':
+          description: OK
+        
+      

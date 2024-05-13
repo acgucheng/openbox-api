@@ -1,0 +1,52 @@
+components:
+  schemas:
+    Post:
+      type: object
+      description: The post in forum. A post is a topic that is posted to a forum.
+      properties:
+        id:
+          type: integer
+          readonly: true
+          description: The unique id of the post
+          example: 2
+        title:
+          type: string
+          description: The title of the post
+          example: "The new policy of the company"
+        content:
+          type: string
+          description: The content of the post
+          example: "The new policy of the company is that all employees must wear a mask when they are in the office."
+        publishedTime:
+          type: string
+          description: The time of the post published
+          example: "2024-05-13T08:30:00-07:00"
+        lastModifies:
+          type: string
+          description: The time of the post last modified
+          example: "2024-05-13T08:30:00-07:00"
+        publisher:
+          type: string
+          description: The username of the publisher of the post
+          example: raynold
+    PostPost:
+      properties:
+        title:
+          $ref: "#/components/schemas/Post/properties/title"
+        content:
+          $ref: "#/components/schemas/Post/properties/content"
+        publisher:
+          $ref: "#/components/schemas/Post/properties/publisher"
+      required:
+        - title
+        - content
+        - publisher
+    UpdatePost:
+      properties:
+        title:
+          $ref: "#/components/schemas/Post/properties/title"
+        content:
+          $ref: "#/components/schemas/Post/properties/content"
+      required:
+        - title
+        - content
