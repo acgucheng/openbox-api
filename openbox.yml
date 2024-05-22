@@ -125,6 +125,21 @@ paths:
         '200':
           description: OK 
 
+    delete:
+      tags:
+        - application
+      description: Delete the application by the application id.
+      parameters:
+        - in: path
+          name: applicationId
+          schema:
+            type: integer
+          required: true
+          description: The id of the application.
+      responses:
+        '200':
+          description: OK
+
   /announcement:
     post:
       tags:
