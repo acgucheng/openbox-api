@@ -124,7 +124,8 @@ paths:
       responses:
         '200':
           description: OK 
-
+          
+  /process/application/{applicationId}:
     delete:
       tags:
         - application
